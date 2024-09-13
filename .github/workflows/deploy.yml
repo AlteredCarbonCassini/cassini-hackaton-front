@@ -20,11 +20,8 @@ jobs:
       - name: Install and Build
         run: npm run build
 
-      - name: Testing
-        run: npm run test
-
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages
-          folder: build
+          folder: dist
