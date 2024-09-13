@@ -44,18 +44,12 @@ export default function Openmeteo() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
+  console.log(data);
 
   return (
     <div>
       <h1>Openmeteo</h1>
-      <ul>
-        {data &&
-          data.map((item, index) => (
-            <li key={index}>
-              {item.temperature2m ? item.temperature2m.join(", ") : "No data"}
-            </li>
-          ))}
-      </ul>
+      <ul></ul>
     </div>
   );
 }
