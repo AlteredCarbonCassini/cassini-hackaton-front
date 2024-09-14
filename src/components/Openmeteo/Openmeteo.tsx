@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import OpenmeteoData from "./OpenmeteoData";
 
-interface WeatherData {
-  time: Date[];
-  temperature2m: Float32Array | null;
-}
+// interface WeatherData {
+//   time: Date[];
+//   temperature2m: Float32Array | null;
+// }
 
 interface FetchError {
   message: string;
 }
 
 export default function Openmeteo() {
-  const [data, setData] = useState<WeatherData[] | null>(null);
+  // const [data, setData] = useState<WeatherData[] | null>(null);
+  const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<FetchError | null>(null);
 
