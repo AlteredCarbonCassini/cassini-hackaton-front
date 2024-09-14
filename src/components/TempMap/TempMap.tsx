@@ -1,9 +1,27 @@
-import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
+import {
+  LayerGroup,
+  LayersControl,
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { LatLngExpression } from "leaflet";
 import LocationMarker from "./LocationMarker";
 import SentinelLayer from "./SentinelLayer";
 import SentinelLayerOpacity from "./SentinelLayerOpacity";
+import campers from "@/utils/data/campers.json";
+// import campers from "@/utils/data/temp_campers.json";
+import tentIcon from "@/assets/game-icons_camping-tent.svg";
+
+import L from "leaflet";
+const customIcon = L.icon({
+  iconUrl: tentIcon, // Путь к вашему изображению
+  iconSize: [32, 32], // Размер иконки
+  iconAnchor: [16, 32], // Точка привязки маркера (середина нижней части)
+  popupAnchor: [0, -32], // Точка привязки попапа относительно маркера
+});
 
 const LAYERS_IDS_SNT_2 = ["ULYSSYS-WATER-QUALITY-VIEWER"];
 
@@ -92,6 +110,41 @@ const TempMap = () => {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png"
           />
+        </LayersControl.Overlay>
+
+        <LayersControl.Overlay name="Marker">
+          <LayerGroup>
+            {campers.features.map(
+              ({ id, geometry: { coordinates }, properties }) => {
+                const coords = [...coordinates].reverse() as LatLngExpression;
+
+                return (
+                  <Marker key={id} position={coords} icon={customIcon}>
+                    <Popup>
+                      <div>
+                        <p>
+                          Name: {properties.name ? properties.name : "Unknown"}
+                        </p>
+
+                        {properties.phone && <p>Phone: {properties.phone}</p>}
+
+                        {properties.website && (
+                          <p>
+                            Website:{" "}
+                            <a href={properties.website}>
+                              {properties.website}
+                            </a>
+                          </p>
+                        )}
+
+                        <p>Coords: {coords.toString()}</p>
+                      </div>
+                    </Popup>
+                  </Marker>
+                );
+              }
+            )}
+          </LayerGroup>
         </LayersControl.Overlay>
       </LayersControl>
 
