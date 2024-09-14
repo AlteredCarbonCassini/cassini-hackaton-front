@@ -1,22 +1,33 @@
 import {
-  ImageOverlay,
   LayersControl,
   MapContainer,
   Marker,
   Popup,
   TileLayer,
   WMSTileLayer,
-  useMap,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LatLngExpression } from "leaflet";
 import { stringifySearchParams } from "@/utils/stringifySearchParams";
 
-function LocationMarker() {
-  const [position, setPosition] = useState<LatLngExpression>([51.505, -0.09]);
+const LAYERS_IDS = [
+  "AGRICULTURE",
+  "BATHYMETRIC",
+  "FALSE-COLOR-URBAN",
+  "FALSE-COLOR",
+  "GEOLOGY",
+  "MOISTURE-INDEX",
+  "NATURAL-COLOR",
+  "NDVI",
+  "SWIR",
+  "TRUE-COLOR-S2L2A",
+];
 
-  const map = useMap();
+function LocationMarker() {
+  const [position] = useState<LatLngExpression>([51.505, -0.09]);
+
+  // const map = useMap();
 
   // useEffect(() => {
   //   map.locate();
@@ -40,9 +51,23 @@ function LocationMarker() {
   );
 }
 
+const SentinelLayer = ({ layerID, url }: { layerID: string; url: string }) => (
+  <WMSTileLayer
+    layers={layerID}
+    format="image/jpeg"
+    attribution='&copy; <a href="http://www.sentinel-hub.com/" target="_blank">Sentinel Hub</a>'
+    url={url}
+    minZoom={6}
+    maxZoom={16}
+  />
+);
+
 const TempMap = () => {
   const baseUrl =
     "https://services.sentinel-hub.com/ogc/wms/3783c494-8b50-4792-941f-7897789fe94b";
+
+  // const customTemplateBaseUrl =
+  //   "https://creodias.sentinel-hub.com/ogc/wms/00922745-a285-4ee4-8691-2da608fb5a53";
 
   const params = {
     time: "2023-09-01/2023-09-13",
@@ -64,45 +89,19 @@ const TempMap = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {/* <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://services.sentinel-hub.com/ogc/wms/3783c494-8b50-4792-941f-7897789fe94b?version=1.1.1&service=WMS&request=GetMap&format=image%2Fjpeg&srs=EPSG%3A4326&layers=GEOLOGY&bbox=18%2C20%2C20%2C22&time=2022-11-22T00%3A00%3A00Z%2F2023-12-22T23%3A59%3A59Z&width=512&height=512&maxcc=100"
-      /> */}
-
       <LayersControl position="topright">
-        <LayersControl.Overlay name="NATURAL-COLOR">
-          <WMSTileLayer
-            // layers="NDVI"
+        {LAYERS_IDS.map(id => (
+          <LayersControl.Overlay key={id} name={id}>
+            <SentinelLayer layerID={id} url={url} />
+          </LayersControl.Overlay>
+        ))}
 
-            layers="NATURAL-COLOR"
-            format="image/jpeg"
-            attribution='&copy; <a href="http://www.sentinel-hub.com/" target="_blank">Sentinel Hub</a>'
-            // url="https://services.sentinel-hub.com/ogc/wms/3783c494-8b50-4792-941f-7897789fe94b?time=2020-04-01/2020-10-08"
-            url={url}
-            // urlProcessingApi="https://services.sentinel-hub.com/ogc/wms/3783c494-8b50-4792-941f-7897789fe94b"
-            // maxcc={ 20}
-            minZoom={6}
-            maxZoom={16}
-            // preset="NDVI"
-            // time="2020-04-01/2020-10-08"
+        {/* <LayersControl.Overlay name="NITROGEN-DIOXIDE">
+          <SentinelLayer
+            layerID="NITROGEN-DIOXIDE"
+            url={customTemplateBaseUrl}
           />
-        </LayersControl.Overlay>
-
-        <LayersControl.Overlay name="NDVI">
-          <WMSTileLayer
-            layers="NDVI"
-            format="image/jpeg"
-            attribution='&copy; <a href="http://www.sentinel-hub.com/" target="_blank">Sentinel Hub</a>'
-            // url="https://services.sentinel-hub.com/ogc/wms/3783c494-8b50-4792-941f-7897789fe94b?time=2020-04-01/2020-10-08"
-            url={url}
-            // urlProcessingApi="https://services.sentinel-hub.com/ogc/wms/3783c494-8b50-4792-941f-7897789fe94b"
-            // maxcc={ 20}
-            minZoom={6}
-            maxZoom={16}
-            // preset="NDVI"
-            // time="2020-04-01/2020-10-08"
-          />
-        </LayersControl.Overlay>
+        </LayersControl.Overlay> */}
       </LayersControl>
 
       <LocationMarker />
