@@ -1,0 +1,153 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "https://www.openstreetmap.org/way/608417855",
+      "bbox": [22.3472543, 53.8017893, 22.3480953, 53.8021819],
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.347620383, 53.80200955]
+      },
+      "properties": {
+        "osm_uid": "1288",
+        "tourism": "caravan_site",
+        "category": "caravan",
+        "osm_user": "Niels Elgaard Larsen",
+        "osm_version": "2",
+        "addr:country": "pl",
+        "osm_changeset": "152725590",
+        "osm_timestamp": "2024-06-15T15:05:23Z"
+      }
+    },
+    {
+      "id": "https://www.openstreetmap.org/node/2057500654",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [21.357884, 53.6270755]
+      },
+      "properties": {
+        "tourism": "camp_site",
+        "category": "standard",
+        "addr:country": "pl"
+      }
+    },
+    {
+      "id": "https://www.openstreetmap.org/node/4768188938",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.1671436, 51.4888676]
+      },
+      "properties": {
+        "name": "pole namiotowe PPN",
+        "tourism": "camp_site",
+        "category": "standard",
+        "operator": "Poleski Park Narodowy",
+        "addr:country": "pl"
+      }
+    },
+    {
+      "id": "https://www.openstreetmap.org/node/4392327997",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [19.3357759, 52.860917]
+      },
+      "properties": {
+        "name": "\"Jawor\" Domki letniskowe",
+        "tourism": "camp_site",
+        "category": "standard",
+        "addr:street": "Dworska G\u00f3ra",
+        "addr:country": "pl"
+      }
+    },
+    {
+      "id": "https://www.openstreetmap.org/way/1219730951",
+      "bbox": [18.3790565, 54.8070806, 18.38081, 54.808382],
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.379975871, 54.80780685]
+      },
+      "properties": {
+        "fee": "yes",
+        "name": "Pole namiotowe Balticsport",
+        "tents": "yes",
+        "access": "private",
+        "shower": "yes",
+        "tourism": "camp_site",
+        "caravans": "yes",
+        "category": "standard",
+        "operator": "Balticsport",
+        "addr:city": "Ch\u0142apowo",
+        "addr:street": "Stefana \u017beromskiego",
+        "addr:country": "pl",
+        "payment:cash": "yes",
+        "addr:postcode": "84-120",
+        "capacity:tents": "200",
+        "static_caravans": "no",
+        "addr:housenumber": "52",
+        "capacity:persons": "200",
+        "capacity:caravans": "50"
+      }
+    },
+    {
+      "id": "https://www.openstreetmap.org/way/1005710242",
+      "bbox": [17.4570242, 51.6975651, 17.457956, 51.6981292],
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [17.457560878, 51.697817]
+      },
+      "properties": {
+        "tourism": "camp_site",
+        "category": "standard",
+        "seasonal": "summer",
+        "addr:country": "pl"
+      }
+    },
+    {
+      "id": "https://www.openstreetmap.org/way/1189156363",
+      "bbox": [21.4074794, 51.8529068, 21.4102242, 51.8550413],
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [21.40878529, 51.8541347]
+      },
+      "properties": {
+        "name": "Stanica harcerska Polewicz",
+        "scout": "yes",
+        "tourism": "camp_site",
+        "category": "group_only",
+        "operator": "Hufiec Or\u0142\u00f3w ZHP Garwolin",
+        "addr:country": "pl"
+      }
+    },
+    {
+      "id": "https://www.openstreetmap.org/way/727986802",
+      "bbox": [18.7237298, 54.6775066, 18.7253401, 54.6785456],
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.724528054, 54.6779289]
+      },
+      "properties": {
+        "fee": "yes",
+        "name": "Caravaning Jurata",
+        "email": "info@juratacamp.pl",
+        "phone": "+48 58 675 20 67; +48 601 754 067; +48 601 733 474",
+        "tents": "yes",
+        "source": "http://www.juratacamp.pl/",
+        "tourism": "camp_site",
+        "website": "http://www.juratacamp.pl/",
+        "alt_name": "Villa Camp Caravaning Jurata",
+        "caravans": "yes",
+        "category": "standard",
+        "addr:country": "pl",
+        "power_supply": "yes"
+      }
+    }
+  ]
+}

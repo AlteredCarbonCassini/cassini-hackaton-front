@@ -1,28 +1,11 @@
-import {
-  LayersControl,
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  WMSTileLayer,
-} from "react-leaflet";
+import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useState } from "react";
 import { LatLngExpression } from "leaflet";
-// import { stringifySearchParams } from "@/utils/stringifySearchParams";
+import LocationMarker from "./LocationMarker";
+import SentinelLayer from "./SentinelLayer";
+import SentinelLayerOpacity from "./SentinelLayerOpacity";
+import CampingLayer from "./CampingLayer";
 
-// const LAYERS_IDS = [
-//   "AGRICULTURE",
-//   "BATHYMETRIC",
-//   "FALSE-COLOR-URBAN",
-//   "FALSE-COLOR",
-//   "GEOLOGY",
-//   "MOISTURE-INDEX",
-//   "NATURAL-COLOR",
-//   "NDVI",
-//   "SWIR",
-//   "TRUE-COLOR-S2L2A",
-// ];
 const LAYERS_IDS_SNT_2 = ["ULYSSYS-WATER-QUALITY-VIEWER"];
 
 const LAYERS_IDS_SNT_3 = ["OTCI"];
@@ -37,62 +20,6 @@ const LAYERS_IDS_SNT_5 = [
   "SULFUR-DIOXIDE",
 ];
 
-function LocationMarker() {
-  const [position] = useState<LatLngExpression | null>(null);
-
-  // const map = useMap();
-
-  // useEffect(() => {
-  //   map.locate();
-
-  //   map.on("locationfound", e => {
-  //     setPosition(e.latlng);
-  //     map.flyTo(e.latlng, map.getZoom()); // Перемещаем карту к найденной позиции
-  //   });
-
-  //   map.on("locationerror", () => {
-  //     alert("Не удалось определить местоположение");
-  //   });
-  // }, [map]);
-
-  console.log(position);
-
-  return position === null ? null : (
-    <Marker position={position}>
-      <Popup>You are here</Popup>
-    </Marker>
-  );
-}
-
-const SentinelLayer = ({ layerID, url }: { layerID: string; url: string }) => (
-  <WMSTileLayer
-    layers={layerID}
-    format="image/jpeg"
-    attribution='&copy; <a href="http://www.sentinel-hub.com/" target="_blank">Sentinel Hub</a>'
-    url={url}
-    minZoom={6}
-    maxZoom={16}
-  />
-);
-
-const SentinelLayerOpacity = ({
-  layerID,
-  url,
-}: {
-  layerID: string;
-  url: string;
-}) => (
-  <WMSTileLayer
-    layers={layerID}
-    format="image/jpeg"
-    attribution='&copy; <a href="http://www.sentinel-hub.com/" target="_blank">Sentinel Hub</a>'
-    url={url}
-    minZoom={6}
-    maxZoom={16}
-    opacity={0.4}
-  />
-);
-
 const TempMap = () => {
   const sent2_BaseUrl =
     "https://services.sentinel-hub.com/ogc/wms/08853bf3-2fc8-4a35-aeeb-f2405ed1671e";
@@ -102,14 +29,6 @@ const TempMap = () => {
 
   const sent5_BaseUrl =
     "https://creodias.sentinel-hub.com/ogc/wms/b1f19051-80f8-4545-b4e5-29a0a2148f3c";
-
-  // const params = {
-  //   time: "2023-09-01/2023-09-13",
-  // };
-
-  // const searchParams = stringifySearchParams(params);
-
-  // const url = baseUrl + "?" + searchParams;
 
   const center: LatLngExpression = [52.2297, 21.0122]; // Warsaw
 
@@ -174,6 +93,10 @@ const TempMap = () => {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png"
           />
+        </LayersControl.Overlay>
+
+        <LayersControl.Overlay name="Campings">
+          <CampingLayer />
         </LayersControl.Overlay>
       </LayersControl>
 
