@@ -50,7 +50,8 @@ export default function Openmeteo() {
     return <div>Error: {error.message}</div>;
   }
 
-  console.log(dataAir);
+  // console.log(dataAir);
+  console.log("dataWeather", dataWeather);
 
   return (
     <div>
