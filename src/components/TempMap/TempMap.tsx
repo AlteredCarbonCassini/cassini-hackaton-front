@@ -88,10 +88,12 @@ const TempMap = () => {
 
   // const url = baseUrl + "?" + searchParams;
 
+  const center: LatLngExpression = [52.2297, 21.0122]; // Варшава
+
   return (
     <MapContainer
-      center={[51.505, -0.09]}
-      zoom={13}
+      center={center}
+      zoom={10}
       scrollWheelZoom={true}
       style={{ minHeight: "100%", minWidth: "100%" }}
     >
@@ -106,13 +108,6 @@ const TempMap = () => {
             <SentinelLayer layerID={id} url={customTemplateBaseUrl} />
           </LayersControl.Overlay>
         ))}
-
-        {/* <LayersControl.Overlay name="AER-AI-354-AND-388">
-          <SentinelLayer
-            layerID="AER-AI-354-AND-388"
-            url={customTemplateBaseUrl}
-          />
-        </LayersControl.Overlay> */}
       </LayersControl>
 
       <LocationMarker />
