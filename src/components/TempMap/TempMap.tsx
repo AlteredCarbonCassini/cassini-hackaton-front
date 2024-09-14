@@ -35,7 +35,7 @@ const LAYERS_IDS_SNT_5 = [
 ];
 
 function LocationMarker() {
-  const [position] = useState<LatLngExpression>([51.505, -0.09]);
+  const [position] = useState<LatLngExpression | null>(null);
 
   // const map = useMap();
 
