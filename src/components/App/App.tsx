@@ -1,5 +1,5 @@
 import TempMap from "../TempMap";
-
+// import InfoCard from "../InfoCard";
 import Openmeteo from "../Openmeteo/Openmeteo";
 
 const App = () => {
@@ -7,9 +7,11 @@ const App = () => {
     <div className="px-[20px] py-[20px]">
       <h1 className="text-4xl ">Hello Hackaton!</h1>
 
-      <div className="w-10/12 h-[900px] overflow-hidden mx-auto mt-[100px]">
+      <div className="w-2/3 h-[900px]">
         <TempMap />
       </div>
+
+      {/* <InfoCard /> */}
 
       <Openmeteo />
     </div>
