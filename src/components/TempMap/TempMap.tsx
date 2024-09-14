@@ -4,6 +4,7 @@ import { LatLngExpression } from "leaflet";
 import LocationMarker from "./LocationMarker";
 import SentinelLayer from "./SentinelLayer";
 import SentinelLayerOpacity from "./SentinelLayerOpacity";
+import campers from "@/utils/data/campers.json";
 
 const LAYERS_IDS_SNT_2 = ["ULYSSYS-WATER-QUALITY-VIEWER"];
 
@@ -30,6 +31,8 @@ const TempMap = () => {
     "https://creodias.sentinel-hub.com/ogc/wms/b1f19051-80f8-4545-b4e5-29a0a2148f3c";
 
   const center: LatLngExpression = [52.2297, 21.0122]; // Warsaw
+
+  console.log(campers);
 
   return (
     <MapContainer
