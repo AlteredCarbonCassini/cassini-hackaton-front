@@ -1,29 +1,33 @@
 import { useEffect, useState } from "react";
-import OpenmeteoData from "./OpenmeteoData";
-
-// interface WeatherData {
-//   time: Date[];
-//   temperature2m: Float32Array | null;
-// }
+import WeatherData, { WeatherDataProps } from "./WeatherData";
+import AirQualityData, { AirQualityDataProps } from "./AirQualityData";
+import { Weather } from "./Weather";
 
 interface FetchError {
   message: string;
 }
 
 export default function Openmeteo() {
-  // const [data, setData] = useState<WeatherData[] | null>(null);
-  const [data, setData] = useState<any>(null);
+  const [dataWeather, setDataWeather] = useState<WeatherDataProps | null>(null);
+  const [dataAir, setDataAir] = useState<AirQualityDataProps | null>(null);
+
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<FetchError | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await OpenmeteoData();
-        if (result) {
-          setData(result);
+        const resultWeather = await WeatherData();
+        const resultAirQuality = await AirQualityData();
+        if (resultWeather) {
+          setDataWeather(resultWeather);
         } else {
-          setData([]);
+          setDataWeather(null);
+        }
+        if (resultAirQuality) {
+          setDataAir(resultAirQuality);
+        } else {
+          setDataAir(null);
         }
       } catch (error) {
         if (error instanceof Error) {
@@ -45,12 +49,13 @@ export default function Openmeteo() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  console.log(data);
+
+  console.log(dataAir);
 
   return (
     <div>
       <h1>Openmeteo</h1>
-      <ul></ul>
+      <ul>{dataWeather && <Weather dataWeather={dataWeather} />}</ul>
     </div>
   );
 }
