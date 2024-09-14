@@ -1,13 +1,9 @@
-import {
-  LayersControl,
-  MapContainer,
-  TileLayer,
-  WMSTileLayer,
-} from "react-leaflet";
+import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { LatLngExpression } from "leaflet";
 import LocationMarker from "./LocationMarker";
 import SentinelLayer from "./SentinelLayer";
+import SentinelLayerOpacity from "./SentinelLayerOpacity";
 
 const LAYERS_IDS_SNT_2 = ["ULYSSYS-WATER-QUALITY-VIEWER"];
 
@@ -22,24 +18,6 @@ const LAYERS_IDS_SNT_5 = [
   "OZONE",
   "SULFUR-DIOXIDE",
 ];
-
-const SentinelLayerOpacity = ({
-  layerID,
-  url,
-}: {
-  layerID: string;
-  url: string;
-}) => (
-  <WMSTileLayer
-    layers={layerID}
-    format="image/jpeg"
-    attribution='&copy; <a href="http://www.sentinel-hub.com/" target="_blank">Sentinel Hub</a>'
-    url={url}
-    minZoom={6}
-    maxZoom={16}
-    opacity={0.4}
-  />
-);
 
 const TempMap = () => {
   const sent2_BaseUrl =
