@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import WeatherData, { WeatherDataProps } from "./WeatherData";
 import AirQualityData, { AirQualityDataProps } from "./AirQualityData";
-import { formatDate } from "@/utils/formatDate";
+import { Weather } from "./Weather";
 
 interface FetchError {
   message: string;
@@ -49,24 +49,13 @@ export default function Openmeteo() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  const timeData = dataWeather?.time;
-  const temprData = dataWeather?.temperature2m;
 
   console.log(dataAir);
 
   return (
     <div>
       <h1>Openmeteo</h1>
-      <ul>
-        {timeData &&
-          temprData &&
-          timeData.map((time, index) => (
-            <li key={index}>
-              {time instanceof Date ? formatDate(time) : time}:{" "}
-              {Math.round(temprData[index])}&deg;C
-            </li>
-          ))}
-      </ul>
+      <ul>{dataWeather && <Weather dataWeather={dataWeather} />}</ul>
     </div>
   );
 }
