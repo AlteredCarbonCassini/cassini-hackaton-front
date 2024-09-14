@@ -1,5 +1,7 @@
 import TempMap from "../TempMap";
 
+import Openmeteo from "../Openmeteo/Openmeteo";
+
 const App = () => {
   return (
     <>
@@ -8,6 +10,8 @@ const App = () => {
       <div className="w-10/12 h-[900px] overflow-hidden mx-auto mt-[100px]">
         <TempMap />
       </div>
+
+      <Openmeteo />
     </>
   );
 };
