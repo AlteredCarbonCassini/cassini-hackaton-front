@@ -145,6 +145,36 @@ const TempMap = () => {
         ))}
       </LayersControl>
 
+      <LayersControl position="topright">
+        <LayersControl.Overlay name="Satelite">
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+          />
+        </LayersControl.Overlay>
+
+        <LayersControl.Overlay name="Topographic map">
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://tile.opentopomap.org/{z}/{x}/{y}.png"
+          />
+        </LayersControl.Overlay>
+
+        <LayersControl.Overlay name="Hiking">
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png"
+          />
+        </LayersControl.Overlay>
+
+        <LayersControl.Overlay name="Cycling">
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png"
+          />
+        </LayersControl.Overlay>
+      </LayersControl>
+
       <LocationMarker />
     </MapContainer>
   );
