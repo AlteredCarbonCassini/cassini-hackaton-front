@@ -125,6 +125,7 @@ const TempMap = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
+      {/* ====== Sentinel layers ====== */}
       <LayersControl position="topright">
         {LAYERS_IDS_SNT_2.map(id => (
           <LayersControl.Overlay key={id} name={id}>
@@ -145,6 +146,7 @@ const TempMap = () => {
         ))}
       </LayersControl>
 
+      {/* ====== Camping layers ====== */}
       <LayersControl position="topright">
         <LayersControl.Overlay name="Satelite">
           <TileLayer
