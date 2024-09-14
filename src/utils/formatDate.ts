@@ -7,5 +7,5 @@ export const formatDate = (date: Date) => {
     minute: "2-digit",
     hour12: false,
   };
-  return date.toLocaleString("en-GB", options).replace(",", "");
+  return date.toLocaleString("en-GB", options as any).replace(",", "");
 };
