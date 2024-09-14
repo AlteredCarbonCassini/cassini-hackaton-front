@@ -1,86 +1,11 @@
-import {
-  LayersControl,
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  WMSTileLayer,
-} from "react-leaflet";
+import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useState } from "react";
-import { LatLngExpression } from "leaflet";
-import { stringifySearchParams } from "@/utils/stringifySearchParams";
-
-const LAYERS_IDS = [
-  "AGRICULTURE",
-  "BATHYMETRIC",
-  "FALSE-COLOR-URBAN",
-  "FALSE-COLOR",
-  "GEOLOGY",
-  "MOISTURE-INDEX",
-  "NATURAL-COLOR",
-  "NDVI",
-  "SWIR",
-  "TRUE-COLOR-S2L2A",
-];
-
-function LocationMarker() {
-  const [position] = useState<LatLngExpression>([51.505, -0.09]);
-
-  // const map = useMap();
-
-  // useEffect(() => {
-  //   map.locate();
-
-  //   map.on("locationfound", e => {
-  //     setPosition(e.latlng);
-  //     map.flyTo(e.latlng, map.getZoom()); // Перемещаем карту к найденной позиции
-  //   });
-
-  //   map.on("locationerror", () => {
-  //     alert("Не удалось определить местоположение");
-  //   });
-  // }, [map]);
-
-  console.log(position);
-
-  return position === null ? null : (
-    <Marker position={position}>
-      <Popup>You are here</Popup>
-    </Marker>
-  );
-}
-
-const SentinelLayer = ({ layerID, url }: { layerID: string; url: string }) => (
-  <WMSTileLayer
-    layers={layerID}
-    format="image/jpeg"
-    attribution='&copy; <a href="http://www.sentinel-hub.com/" target="_blank">Sentinel Hub</a>'
-    url={url}
-    minZoom={6}
-    maxZoom={16}
-  />
-);
 
 const TempMap = () => {
-  const baseUrl =
-    "https://services.sentinel-hub.com/ogc/wms/3783c494-8b50-4792-941f-7897789fe94b";
-
-  // const customTemplateBaseUrl =
-  //   "https://creodias.sentinel-hub.com/ogc/wms/00922745-a285-4ee4-8691-2da608fb5a53";
-
-  const params = {
-    time: "2023-09-01/2023-09-13",
-  };
-
-  const searchParams = stringifySearchParams(params);
-
-  const url = baseUrl + "?" + searchParams;
-
   return (
     <MapContainer
-      center={[51.505, -0.09]}
-      zoom={13}
+      center={[54.33764, 18.660344]}
+      zoom={12}
       scrollWheelZoom={true}
       style={{ minHeight: "100%", minWidth: "100%" }}
     >
@@ -89,22 +14,7 @@ const TempMap = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      <LayersControl position="topright">
-        {LAYERS_IDS.map(id => (
-          <LayersControl.Overlay key={id} name={id}>
-            <SentinelLayer layerID={id} url={url} />
-          </LayersControl.Overlay>
-        ))}
-
-        {/* <LayersControl.Overlay name="NITROGEN-DIOXIDE">
-          <SentinelLayer
-            layerID="NITROGEN-DIOXIDE"
-            url={customTemplateBaseUrl}
-          />
-        </LayersControl.Overlay> */}
-      </LayersControl>
-
-      <LocationMarker />
+      <LayersControl position="topright"></LayersControl>
     </MapContainer>
   );
 };
