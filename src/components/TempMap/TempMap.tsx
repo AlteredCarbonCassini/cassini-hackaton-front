@@ -9,19 +9,29 @@ import {
 import "leaflet/dist/leaflet.css";
 import { useState } from "react";
 import { LatLngExpression } from "leaflet";
-import { stringifySearchParams } from "@/utils/stringifySearchParams";
+// import { stringifySearchParams } from "@/utils/stringifySearchParams";
 
-const LAYERS_IDS = [
-  "AGRICULTURE",
-  "BATHYMETRIC",
-  "FALSE-COLOR-URBAN",
-  "FALSE-COLOR",
-  "GEOLOGY",
-  "MOISTURE-INDEX",
-  "NATURAL-COLOR",
-  "NDVI",
-  "SWIR",
-  "TRUE-COLOR-S2L2A",
+// const LAYERS_IDS = [
+//   "AGRICULTURE",
+//   "BATHYMETRIC",
+//   "FALSE-COLOR-URBAN",
+//   "FALSE-COLOR",
+//   "GEOLOGY",
+//   "MOISTURE-INDEX",
+//   "NATURAL-COLOR",
+//   "NDVI",
+//   "SWIR",
+//   "TRUE-COLOR-S2L2A",
+// ];
+
+const LAYERS_IDS_SNT_5 = [
+  "AER-AI-340-AND-380",
+  "AER-AI-354-AND-388",
+  "CH4",
+  "CARBON-MONOXIDE",
+  "FORMALDEHYDE",
+  "OZONE",
+  "SULFUR-DIOXIDE",
 ];
 
 function LocationMarker() {
@@ -59,23 +69,24 @@ const SentinelLayer = ({ layerID, url }: { layerID: string; url: string }) => (
     url={url}
     minZoom={6}
     maxZoom={16}
+    opacity={0.4}
   />
 );
 
 const TempMap = () => {
-  const baseUrl =
-    "https://services.sentinel-hub.com/ogc/wms/3783c494-8b50-4792-941f-7897789fe94b";
+  // const baseUrl =
+  //   "https://services.sentinel-hub.com/ogc/wms/3783c494-8b50-4792-941f-7897789fe94b";
 
-  // const customTemplateBaseUrl =
-  //   "https://creodias.sentinel-hub.com/ogc/wms/00922745-a285-4ee4-8691-2da608fb5a53";
+  const customTemplateBaseUrl =
+    "https://creodias.sentinel-hub.com/ogc/wms/b1f19051-80f8-4545-b4e5-29a0a2148f3c";
 
-  const params = {
-    time: "2023-09-01/2023-09-13",
-  };
+  // const params = {
+  //   time: "2023-09-01/2023-09-13",
+  // };
 
-  const searchParams = stringifySearchParams(params);
+  // const searchParams = stringifySearchParams(params);
 
-  const url = baseUrl + "?" + searchParams;
+  // const url = baseUrl + "?" + searchParams;
 
   return (
     <MapContainer
@@ -90,15 +101,15 @@ const TempMap = () => {
       />
 
       <LayersControl position="topright">
-        {LAYERS_IDS.map(id => (
+        {LAYERS_IDS_SNT_5.map(id => (
           <LayersControl.Overlay key={id} name={id}>
-            <SentinelLayer layerID={id} url={url} />
+            <SentinelLayer layerID={id} url={customTemplateBaseUrl} />
           </LayersControl.Overlay>
         ))}
 
-        {/* <LayersControl.Overlay name="NITROGEN-DIOXIDE">
+        {/* <LayersControl.Overlay name="AER-AI-354-AND-388">
           <SentinelLayer
-            layerID="NITROGEN-DIOXIDE"
+            layerID="AER-AI-354-AND-388"
             url={customTemplateBaseUrl}
           />
         </LayersControl.Overlay> */}
