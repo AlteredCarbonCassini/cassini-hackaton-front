@@ -16,7 +16,12 @@ export default {
       xl: `${breakpoints.desktop}px`,
     },
 
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "detailed-gradient":
+          "linear-gradient(to bottom, #bd0000, #ff0000, #ff9900, #ffff00, #00ff77, #00ffff, #0088ff, #0000ff, #000080)",
+      },
+    },
   },
 
   plugins: [],
