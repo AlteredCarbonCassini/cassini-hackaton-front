@@ -42,13 +42,6 @@ const TempMap = () => {
             url="https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png"
           />
         </LayersControl.Overlay>
-
-        <LayersControl.Overlay name="TEST">
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://opencampingmap.{s}.tile.maphosting.uk/en/map/v1/{z}/{x}/{y}.png"
-          />
-        </LayersControl.Overlay>
       </LayersControl>
     </MapContainer>
   );
