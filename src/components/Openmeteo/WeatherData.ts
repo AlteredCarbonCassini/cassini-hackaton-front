@@ -2,8 +2,14 @@ import { LATITUDE, LONGITUDE } from "@/constants/openMeteoLocation";
 import { fetchWeatherApi } from "openmeteo";
 
 export interface WeatherDataProps {
-  time: Date[]; // масив об'єктів Date
-  temperature2m: Float32Array | null; // Float32Array або null, якщо дані не доступні
+  hourly: {
+    time: Date[];
+    temperature2m: Float32Array | null;
+    relativeHumidity2m: Float32Array | null;
+    rain: Float32Array | null;
+    weatherCode: Float32Array | null;
+    surfacePressure: Float32Array | null;
+  };
 }
 
 export default async function WeatherData() {
@@ -40,22 +46,19 @@ export default async function WeatherData() {
   if (hourly) {
     // Calculate time range and temperature array
     const weatherData: WeatherDataProps = {
-      time: range(
-        Number(hourly.time()),
-        Number(hourly.timeEnd()),
-        hourly.interval()
-      ).map(t => new Date((t + utcOffsetSeconds) * 1000)),
-      temperature2m: hourly.variables(0)?.valuesArray() || null,
+      hourly: {
+        time: range(
+          Number(hourly.time()),
+          Number(hourly.timeEnd()),
+          hourly.interval()
+        ).map(t => new Date((t + utcOffsetSeconds) * 1000)),
+        temperature2m: hourly.variables(0)!.valuesArray()!,
+        relativeHumidity2m: hourly.variables(1)!.valuesArray()!,
+        rain: hourly.variables(2)!.valuesArray()!,
+        weatherCode: hourly.variables(3)!.valuesArray()!,
+        surfacePressure: hourly.variables(4)!.valuesArray()!,
+      },
     };
-    //console.log(weatherData.time);
     return weatherData;
   }
 }
-
-WeatherData()
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error("Error fetching weather data:", error);
-  });
