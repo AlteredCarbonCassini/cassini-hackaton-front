@@ -4,17 +4,12 @@ import {
   TileLayer,
   useMapEvents,
 } from "react-leaflet";
-import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { LatLngExpression } from "leaflet";
 import LocationMarker from "./LocationMarker";
 import SentinelLayer from "./SentinelLayer";
 import SentinelLayerOpacity from "./SentinelLayerOpacity";
-import campers from "@/utils/data/campers.json";
-// import campers from "@/utils/data/temp_campers.json";
-import tentIcon from "@/assets/game-icons_camping-tent.svg";
 
-import L from "leaflet";
 import { useState } from "react";
 import {
   LAYERS_IDS_SNT_2,
@@ -24,32 +19,23 @@ import {
   sent3_BaseUrl,
   sent5_BaseUrl,
   LAYERS,
-  LayerType,
 } from "@/utils/data/layersData";
 import InfoCard from "../InfoCard";
 
-const customIcon = L.icon({
-  iconUrl: tentIcon, // Путь к вашему изображению
-  iconSize: [32, 32], // Размер иконки
-  iconAnchor: [16, 32], // Точка привязки маркера (середина нижней части)
-  popupAnchor: [0, -32], // Точка привязки попапа относительно маркера
-});
 import CampingLayer from "./CampingLayer";
 
 const TempMap = () => {
-  const [selectedLayer, setSelectedLayer] = useState<string>("default"); // Стейт для хранения ID выбранного слоя
-  console.log(`🚀 ~ TempMap ~ selectedLayer:`, selectedLayer);
+  const [selectedLayer, setSelectedLayer] = useState<string>("default");
 
-  const currentLayer = LAYERS[selectedLayer] as LayerType;
-  console.log(`🚀 ~ TempMap ~ currentLayer:`, currentLayer);
+  const currentLayer = LAYERS[selectedLayer];
 
   const MapEvents = () => {
     useMapEvents({
       overlayadd: e => {
-        setSelectedLayer(e.name); // Устанавливаем выбранный слой
+        setSelectedLayer(e.name);
       },
       overlayremove: () => {
-        setSelectedLayer("default"); // Сбрасываем стейт при удалении слоя
+        setSelectedLayer("default");
       },
     });
     return null;
@@ -58,12 +44,8 @@ const TempMap = () => {
   const center: LatLngExpression = [52.2297, 21.0122]; // Warsaw
 
   return (
-    <div className="flex">
-      {selectedLayer === "default" ? (
-        <span className="h-[600px]">Choose a layer</span>
-      ) : (
-        <InfoCard layer={currentLayer} />
-      )}
+    <div className="flex gap-x-2">
+      <InfoCard layer={currentLayer} selectedLayer={selectedLayer} />
 
       <MapContainer
         center={center}
