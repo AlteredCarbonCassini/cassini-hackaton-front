@@ -1,12 +1,10 @@
 import {
-  LayerGroup,
   LayersControl,
   MapContainer,
-  Marker,
-  Popup,
   TileLayer,
   useMapEvents,
 } from "react-leaflet";
+import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { LatLngExpression } from "leaflet";
 import LocationMarker from "./LocationMarker";
@@ -36,6 +34,7 @@ const customIcon = L.icon({
   iconAnchor: [16, 32], // Точка привязки маркера (середина нижней части)
   popupAnchor: [0, -32], // Точка привязки попапа относительно маркера
 });
+import CampingLayer from "./CampingLayer";
 
 const TempMap = () => {
   const [selectedLayer, setSelectedLayer] = useState<string>("default"); // Стейт для хранения ID выбранного слоя
@@ -130,40 +129,8 @@ const TempMap = () => {
             />
           </LayersControl.Overlay>
 
-          <LayersControl.Overlay name="Marker">
-            <LayerGroup>
-              {campers.features.map(
-                ({ id, geometry: { coordinates }, properties }) => {
-                  const coords = [...coordinates].reverse() as LatLngExpression;
-
-                  return (
-                    <Marker key={id} position={coords} icon={customIcon}>
-                      <Popup>
-                        <div>
-                          <p>
-                            Name:{" "}
-                            {properties.name ? properties.name : "Unknown"}
-                          </p>
-
-                          {properties.phone && <p>Phone: {properties.phone}</p>}
-
-                          {properties.website && (
-                            <p>
-                              Website:{" "}
-                              <a href={properties.website}>
-                                {properties.website}
-                              </a>
-                            </p>
-                          )}
-
-                          <p>Coords: {coords.toString()}</p>
-                        </div>
-                      </Popup>
-                    </Marker>
-                  );
-                }
-              )}
-            </LayerGroup>
+          <LayersControl.Overlay name="Campings">
+            <CampingLayer />
           </LayersControl.Overlay>
         </LayersControl>
 
