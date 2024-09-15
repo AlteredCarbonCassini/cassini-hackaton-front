@@ -66,7 +66,7 @@ const Forecast: FC<IForecastProps> = ({ data }) => {
         (key, index) =>
           index != isLastDayIndex && (
             <li key={key} className="border-b border-gray-600 py-4">
-              <div className="flex gap-6 items-center">
+              <div className="flex gap-4 items-center">
                 <div className="text-xl font-semibold text-gray-300">{key}</div>
 
                 {convertedForecast[key].map(
