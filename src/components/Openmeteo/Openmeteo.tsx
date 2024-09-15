@@ -59,7 +59,7 @@ export default function Openmeteo() {
 
   return (
     <div>
-      <div className="flex mb-[100px] gap-[100px]">
+      <div className="flex mb-[100px] gap-[50px]">
         <div>
           <h2 className="text-2xl mb-8">Weather forecast</h2>
           <div className="flex">
