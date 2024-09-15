@@ -6,7 +6,7 @@ const App = () => {
     <div className="px-[20px] py-[20px] ">
       <h1 className="text-4xl ">Hello Hackaton!</h1>
 
-      <div className="h-2/3 mb-6">
+      <div className="h-[600px] mb-6">
         <TempMap />
       </div>
 

@@ -48,7 +48,7 @@ const TempMap = () => {
   const center: LatLngExpression = mainCoords; // Warsaw
 
   return (
-    <div className="flex gap-x-2 h-[600px] w-full">
+    <div className="flex gap-x-2 h-full w-full">
       <InfoCard layer={currentLayer} selectedLayer={selectedLayer} />
 
       <MapContainer
