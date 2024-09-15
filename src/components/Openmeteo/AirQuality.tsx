@@ -53,10 +53,10 @@ export const AirQuality = ({ dataAir }: { dataAir: AirQualityDataProps }) => {
   return (
     <>
       {!checkAirQualityDataExicting ? (
-        <div className="mx-auto flex flex-col justify-center min-w-[320px] max-w-[400px]">
-          <h2 className="text-center mb-5 text-lg font-bold">
+        <div className="mx-auto flex flex-col justify-center min-w-[320px] max-w-[400px] pt-5">
+          {/* <h2 className="text-center mb-5 text-lg font-bold">
             Air quality on {formatDate(time)} in Warsaw
-          </h2>
+          </h2> */}
           <table>
             <tbody>
               <tr>
