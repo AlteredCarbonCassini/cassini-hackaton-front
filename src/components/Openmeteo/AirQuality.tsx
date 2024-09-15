@@ -48,8 +48,6 @@ export const AirQuality = ({ dataAir }: { dataAir: AirQualityDataProps }) => {
     olivePollen &&
     ragweedPollen;
 
-  console.log(checkAirQualityDataExicting);
-
   const tableRowStyle = "border px-2 py-1";
 
   return (

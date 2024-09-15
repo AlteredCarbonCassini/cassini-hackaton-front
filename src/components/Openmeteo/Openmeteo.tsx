@@ -6,6 +6,7 @@ import AirQualityData, { AirQualityDataProps } from "./AirQualityData";
 import Forecast from "./Forecast";
 
 import { AirQuality } from "./AirQuality";
+import { useCoordsContext } from "../CoordsProvider/CoordsProvider";
 
 interface FetchError {
   message: string;
@@ -18,11 +19,13 @@ export default function Openmeteo() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<FetchError | null>(null);
 
+  const { mainCoords } = useCoordsContext();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resultWeather = await WeatherData();
-        const resultAirQuality = await AirQualityData();
+        const resultWeather = await WeatherData(mainCoords);
+        const resultAirQuality = await AirQualityData(mainCoords);
         if (resultWeather) {
           setDataWeather(resultWeather);
         } else {
@@ -44,7 +47,7 @@ export default function Openmeteo() {
     };
 
     fetchData();
-  }, []);
+  }, [mainCoords]);
 
   if (loading) {
     return <div>Loading...</div>;

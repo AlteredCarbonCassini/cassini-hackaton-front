@@ -23,9 +23,12 @@ import {
 import InfoCard from "../InfoCard";
 
 import CampingLayer from "./CampingLayer";
+import { useCoordsContext } from "../CoordsProvider/CoordsProvider";
+import CenterMap from "./CenterMap";
 
 const TempMap = () => {
   const [selectedLayer, setSelectedLayer] = useState<string>("default");
+  const { mainCoords } = useCoordsContext();
 
   const currentLayer = LAYERS[selectedLayer];
 
@@ -41,7 +44,8 @@ const TempMap = () => {
     return null;
   };
 
-  const center: LatLngExpression = [52.2297, 21.0122]; // Warsaw
+  // const center: LatLngExpression = [52.2297, 21.0122]; // Warsaw
+  const center: LatLngExpression = mainCoords; // Warsaw
 
   return (
     <div className="flex gap-x-2">
@@ -59,6 +63,7 @@ const TempMap = () => {
         />
 
         <MapEvents />
+        <CenterMap />
 
         {/* ====== Sentinel layers ====== */}
         <LayersControl position="topright">
