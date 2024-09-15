@@ -84,7 +84,7 @@ const Forecast: FC<IForecastProps> = ({ data }) => {
                           {Icon && <Icon className="block h-full w-full" />}
                         </div>
 
-                        <p className="text-gray-500 text-sm italic h-10 text-center">
+                        <p className="text-gray-500 text-sm italic h-10 text-center overflow-hidden">
                           {getWeatherDescription(code)}
                         </p>
 
