@@ -44,7 +44,7 @@ const CampingLayer = () => {
     };
   }, [map]);
 
-  console.log("filteredCapmers", filteredCapmers);
+  // console.log("filteredCapmers", filteredCapmers);
 
   return (
     <LayerGroup>

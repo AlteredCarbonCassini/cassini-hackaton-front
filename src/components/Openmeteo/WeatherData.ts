@@ -1,4 +1,4 @@
-import { LATITUDE, LONGITUDE } from "@/constants/openMeteoLocation";
+// import { LATITUDE, LONGITUDE } from "@/constants/openMeteoLocation";
 import { fetchWeatherApi } from "openmeteo";
 
 export interface WeatherDataProps {
@@ -12,10 +12,12 @@ export interface WeatherDataProps {
   };
 }
 
-export default async function WeatherData() {
+export default async function WeatherData(mainCoords: [number, number]) {
   const params = {
-    latitude: LATITUDE,
-    longitude: LONGITUDE,
+    // latitude: LATITUDE,
+    // longitude: LONGITUDE,
+    latitude: mainCoords[0],
+    longitude: mainCoords[1],
     hourly: [
       "temperature_2m",
       "relative_humidity_2m",

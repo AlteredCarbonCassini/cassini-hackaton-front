@@ -27,8 +27,6 @@ const Forecast: FC<IForecastProps> = ({ data }) => {
     weatherCode,
   } = data.hourly;
 
-  console.log(time);
-
   const convertedForecast = time.reduce((acc, val, i) => {
     const date = new Date(val);
 
@@ -59,8 +57,6 @@ const Forecast: FC<IForecastProps> = ({ data }) => {
 
     return acc;
   }, {} as any);
-
-  console.log(convertedForecast);
 
   const days = Object.keys(convertedForecast);
   const isLastDayIndex = days.length - 1;

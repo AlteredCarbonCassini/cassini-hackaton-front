@@ -1,4 +1,4 @@
-import { LATITUDE, LONGITUDE } from "@/constants/openMeteoLocation";
+// import { LATITUDE, LONGITUDE } from "@/constants/openMeteoLocation";
 import { fetchWeatherApi } from "openmeteo";
 
 export interface AirQualityDataProps {
@@ -25,10 +25,12 @@ export interface AirQualityDataProps {
   };
 }
 
-export default async function AirQualityData() {
+export default async function AirQualityData(mainCoords: [number, number]) {
   const params = {
-    latitude: LATITUDE,
-    longitude: LONGITUDE,
+    // latitude: LATITUDE,
+    // longitude: LONGITUDE,
+    latitude: mainCoords[0],
+    longitude: mainCoords[1],
     current: [
       "european_aqi",
       "pm10",
