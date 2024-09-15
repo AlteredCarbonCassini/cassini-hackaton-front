@@ -1,4 +1,4 @@
-import { formatDate } from "@/utils/formatDate";
+// import { formatDate } from "@/utils/formatDate";
 import { AirQualityDataProps } from "./AirQualityData";
 
 export const AirQuality = ({ dataAir }: { dataAir: AirQualityDataProps }) => {
