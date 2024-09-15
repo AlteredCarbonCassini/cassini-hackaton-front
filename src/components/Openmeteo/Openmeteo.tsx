@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import WeatherData, { WeatherDataProps } from "./WeatherData";
 import AirQualityData, { AirQualityDataProps } from "./AirQualityData";
-import { Weather } from "./Weather";
+// import { Weather } from "./Weather";
 
 import Forecast from "./Forecast";
 
