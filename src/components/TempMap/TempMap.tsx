@@ -48,14 +48,15 @@ const TempMap = () => {
   const center: LatLngExpression = mainCoords; // Warsaw
 
   return (
-    <div className="flex gap-x-2">
+    <div className="flex gap-x-2 h-[600px] w-full">
       <InfoCard layer={currentLayer} selectedLayer={selectedLayer} />
 
       <MapContainer
+        className="w-full h-full"
         center={center}
         zoom={10}
         scrollWheelZoom={true}
-        style={{ minHeight: "100%", minWidth: "100%" }}
+        style={{ minWidth: "0" }}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

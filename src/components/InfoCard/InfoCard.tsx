@@ -12,7 +12,7 @@ const InfoCard: FC<IInfoCardProps> = ({ layer, selectedLayer }) => {
   const isDefaultLayer = selectedLayer === "default";
 
   return (
-    <div className="border w-[400px] h-[600px] p-2 shrink-0 bg-gray-300">
+    <div className="border w-[400px] h-[600px] p-2 shrink-0 bg-gray-300 text-gray-800">
       {isDefaultLayer ? (
         <h2 className="mb-4 font-bold text-xl text-center">Choose a layer</h2>
       ) : (
