@@ -90,7 +90,7 @@ export default async function AirQualityData() {
         ragweedPollen: current.variables(17)!.value(),
       },
     };
-    console.log(airQualityData);
+    // console.log(airQualityData);
     return airQualityData;
   }
 }

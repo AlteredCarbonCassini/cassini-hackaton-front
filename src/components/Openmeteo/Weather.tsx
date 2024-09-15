@@ -19,7 +19,7 @@ export const Weather = ({ dataWeather }: { dataWeather: WeatherDataProps }) => {
 
     return foundWeather ? foundWeather.value : "Unknown weather"; // якщо код погоди не знайдено
   });
-  console.log(weatherDescription);
+  // console.log(weatherDescription);
   return (
     <>
       {checkWeatherDataExicting &&
